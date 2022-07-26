@@ -1,6 +1,7 @@
 package com.Vtiger.TCs;
 
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.ObjectRepo.HomePage;
 import com.ObjectRepo.OrganizationCreatePage;
@@ -51,37 +52,17 @@ public class TC_03_CreateOrganization_DeleteTest extends BaseUtilityClass {
 		WebElement Type_of_Organization_Dd=organizationpage.getTypeofOrg_DD();
 		webutil.select_dd(Type_of_Organization_Dd, "accountname");
 		organizationpage.getSearchbtn().click();
-		Thread.sleep(1000);
+		Thread.sleep(4000);
 		organizationpage.getSearchOrgcheckbox().click();
 		organizationpage.getDeleteCheckboxbtn().click();
 		webutil.alertAccept();
-
+		Thread.sleep(2000);
+		organizationpage.getSearchOrgcheckbox().click();
 		WebElement info_data=organizationResponsePage.getConfirmMassege();
-		//String output=info_data.getText();
-		if (info_data.isDisplayed())
-		{
-			System.out.println("Organization is deleted and verified Passed");
-		}
-		else
-		{
-			System.out.println("Organization is not deleted and verified Failed");
-		}	
-		//		driver.findElement(By.xpath("(//a[.='Organizations'])[1]")).click();
-		//		Thread.sleep(2000);
-		//		List<WebElement> All_Org=driver.findElements(By.xpath("//table[@class='lvt small']//tr//td[3]/a"));
-		//		for(WebElement Each_Org:All_Org)
-		//		{
-		//			if(Org_Name.equalsIgnoreCase(Each_Org.getText()))
-		//			{
-		//				System.out.println("Organization is not deleted and Test case is Failed");
-		//			}
-		//
-		//		}
-		
-//		webutil.imlicitWait();
-//		webutil.moveToElement(homepage.getLogout_Symbol());
-//		homepage.getSign_Out_Button().click();
-//		driver.close();
+		String output=info_data.getText();
+
+		Assert.assertEquals("No Organization Found !", output);
+
 	}
 
 }

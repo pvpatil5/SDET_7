@@ -1,6 +1,8 @@
 package com.Vtiger.TCs;
 
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.ObjectRepo.CampaignCreatePage;
@@ -12,6 +14,7 @@ import com.vtiger.GenericLib.RetryAnalyser;
 import com.vtiger.GenericLib.WebDriverUtility;
 import com.vtiger.GenericLib.fakeData;
 
+@Listeners(com.vtiger.GenericLib.Listners.class)
 public class TC_05_Create_Campaign_DeleteTest extends BaseUtilityClass {
 
 	@Test(priority = 5,retryAnalyzer = RetryAnalyser.class)
@@ -52,22 +55,16 @@ public class TC_05_Create_Campaign_DeleteTest extends BaseUtilityClass {
 		webutil.select_dd(dd, "campaignname");
 		responsepage.getSearchbtn().click();
 
-		Thread.sleep(1000);
+		Thread.sleep(4000);
 		campaignpage.getSearchcampcheckbox().click();
 		campaignpage.getDeleteCheckboxbtn().click();
 		webutil.alertAccept();
-
+		responsepage.getSearchbtn().click();
+		Thread.sleep(2000);
 		WebElement info_data=responsepage.getConfirmMassege();
-		//String output=info_data.getText();
-		if (info_data.isDisplayed())
-		{
-			System.out.println("Organization is deleted and verified Passed");
-		}
-		else
-		{
-			System.out.println("Organization is not deleted and verified Failed");
-		}	
-
+		String output=info_data.getText();
+		System.out.println(output);
+		Assert.assertEquals("No Campaign Found !", output);
 		
 	}
 

@@ -11,9 +11,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import com.ObjectRepo.HomePage;
 import com.ObjectRepo.LoginPage;
@@ -37,11 +40,12 @@ public class BaseUtilityClass implements IAutoconsts{
 		System.out.println("Disconnected To Database");
 	}
 
+	@Parameters({"browser","url"})
 	@BeforeClass
-	public void  lauchBrowser() throws Throwable
+	public void  lauchBrowser(String browser, String url) throws Throwable
 	{
-		FileLib flib=new FileLib();
-		String browser=flib.readPropertyData(IAutoconsts.propertyfilepth,"browser");
+		//FileLib flib=new FileLib();
+		//String browser=flib.readPropertyData(IAutoconsts.propertyfilepth,"browser");
 
 		if(browser.equalsIgnoreCase("firefox"))
 		{
@@ -57,7 +61,7 @@ public class BaseUtilityClass implements IAutoconsts{
 		WebDriverUtility webutil=new WebDriverUtility(driver);
 		webutil.maximizeWindow();
 		webutil.imlicitWait();
-		String url=flib.readPropertyData(IAutoconsts.propertyfilepth,"url");
+		//String url=flib.readPropertyData(IAutoconsts.propertyfilepth,"url");
 		driver.get(url);
 		sdriver=driver;
 	}
