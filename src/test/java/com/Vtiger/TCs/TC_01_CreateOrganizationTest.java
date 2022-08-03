@@ -1,5 +1,6 @@
 package com.Vtiger.TCs;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.ObjectRepo.HomePage;
@@ -13,7 +14,7 @@ import com.vtiger.GenericLib.fakeData;
 //@Listeners(com.vtiger.GenericLib.Listners.class)
 public class TC_01_CreateOrganizationTest  extends BaseUtilityClass{
 
-	@Test(priority = 1,retryAnalyzer = RetryAnalyser.class)
+	@Test(groups ="smoke",retryAnalyzer = RetryAnalyser.class)
 	public void createOrg() throws Throwable
 	{
 
@@ -21,7 +22,7 @@ public class TC_01_CreateOrganizationTest  extends BaseUtilityClass{
 		fakeData fakerdata=new fakeData();
 		String Org_name=fakerdata.companyName();
 
-		
+		Assert.assertEquals(false, true);
 		HomePage homepage=new HomePage(driver);
 		homepage.getOrganization_Linkbutton().click();
 

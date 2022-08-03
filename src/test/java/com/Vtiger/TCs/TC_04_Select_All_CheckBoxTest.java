@@ -12,7 +12,7 @@ import com.vtiger.GenericLib.RetryAnalyser;
 
 public class TC_04_Select_All_CheckBoxTest extends BaseUtilityClass {
 
-	@Test(priority = 4,retryAnalyzer = RetryAnalyser.class)
+	@Test(groups ="regression",retryAnalyzer = RetryAnalyser.class)
 	public void selectallTest() throws InterruptedException {
 
 		

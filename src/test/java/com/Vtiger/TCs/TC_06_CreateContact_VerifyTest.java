@@ -17,7 +17,7 @@ import com.vtiger.GenericLib.fakeData;
 
 public class TC_06_CreateContact_VerifyTest extends BaseUtilityClass{
 
-	@Test(priority = 6,retryAnalyzer = RetryAnalyser.class)
+	@Test(groups = {"regression","smoke"},retryAnalyzer = RetryAnalyser.class)
 	public void createcontactTest() throws InterruptedException {
 
 		fakeData fakerdata=new fakeData();

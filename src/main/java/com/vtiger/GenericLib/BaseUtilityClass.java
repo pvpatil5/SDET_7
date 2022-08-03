@@ -29,23 +29,23 @@ public class BaseUtilityClass implements IAutoconsts{
 	public  WebDriver driver;
 	public static WebDriver sdriver;
 
-	@BeforeSuite
+	@BeforeSuite(groups = {"smoke","regression"})
 	public void connectToDatabase()
 	{
 		System.out.println("Connected To Database");
 	}
-	@AfterSuite
+	@AfterSuite(groups = {"smoke","regression"})
 	public void diconnectToDatabase()
 	{
 		System.out.println("Disconnected To Database");
 	}
 
-	@Parameters({"browser","url"})
-	@BeforeClass
-	public void  lauchBrowser(String browser, String url) throws Throwable
+	//@Parameters({"browser","url"})
+	@BeforeClass(groups = {"smoke","regression"})
+	public void  lauchBrowser() throws Throwable
 	{
-		//FileLib flib=new FileLib();
-		//String browser=flib.readPropertyData(IAutoconsts.propertyfilepth,"browser");
+		FileLib flib=new FileLib();
+		String browser=flib.readPropertyData(IAutoconsts.propertyfilepth,"browser");
 
 		if(browser.equalsIgnoreCase("firefox"))
 		{
@@ -61,11 +61,11 @@ public class BaseUtilityClass implements IAutoconsts{
 		WebDriverUtility webutil=new WebDriverUtility(driver);
 		webutil.maximizeWindow();
 		webutil.imlicitWait();
-		//String url=flib.readPropertyData(IAutoconsts.propertyfilepth,"url");
+		String url=flib.readPropertyData(IAutoconsts.propertyfilepth,"url");
 		driver.get(url);
 		sdriver=driver;
 	}
-	@BeforeMethod
+	@BeforeMethod(groups = {"smoke","regression"})
 	public void loginToApp() throws Throwable
 	{
 		LoginPage loginpage=new LoginPage(driver);
@@ -75,7 +75,7 @@ public class BaseUtilityClass implements IAutoconsts{
 		loginpage.getloginapp(un, pwd);
 
 	}
-	@AfterMethod
+	@AfterMethod(groups = {"smoke","regression"})
 	public void logout()
 	{
 		WebDriverUtility webutil=new WebDriverUtility(driver);
@@ -84,7 +84,7 @@ public class BaseUtilityClass implements IAutoconsts{
 		webutil.moveToElement(homepage.getLogout_Symbol());
 		homepage.getSign_Out_Button().click();
 	}
-	@AfterClass
+	@AfterClass(groups = {"smoke","regression"})
 	public void closebrowser()
 	{
 		driver.close();

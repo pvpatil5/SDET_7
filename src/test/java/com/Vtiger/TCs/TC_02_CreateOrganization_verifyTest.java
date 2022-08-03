@@ -14,7 +14,7 @@ import com.vtiger.GenericLib.fakeData;
 
 public class TC_02_CreateOrganization_verifyTest extends BaseUtilityClass {
 
-	@Test(priority = 2,retryAnalyzer = RetryAnalyser.class)
+	@Test(groups ="smoke",retryAnalyzer = RetryAnalyser.class)
 	public void createOrganization() {
 
 		fakeData fakedata=new fakeData();
